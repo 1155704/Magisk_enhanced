@@ -82,7 +82,7 @@ Here's how:
 
    - \assets\chromeos (whole folder)
 
- - the boot_patch.sh file from the /script folder above on this repository
+ - the boot_patch.sh file from the /script folder above on this repository ( https://github.com/NeutroGe/Vendor_boot_img_patcher_tool/blob/master/scripts/boot_patch.sh )
 
  - https://github.com/topjohnwu/Magisk/blob/master/scripts/util_functions.sh 
 
