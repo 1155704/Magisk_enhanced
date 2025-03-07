@@ -36,7 +36,7 @@ Root -> vendor_ramdisks (folder)
            -> ramdisk.cpio
            -> recovery.cpio
 
-    -> dtb
+     -> dtb
 
 Then this modified "boot_patch.sh" script might be able to patch your vendor_boot.img image to root your device!
 
