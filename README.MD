@@ -2,7 +2,7 @@
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 - codenames "flare" and "spark", and probably more.
 
-They have non compliant (or at the very least very uncommon) boot structure: the boot.img contains only the kernel, there is no init_boot.img nor recovery.img, and the vendor_boot.img contains init_boot.cpio, ramdisk.cpio and recovery.cpio
+They have non compliant (or at the very least very uncommon) boot structure: the boot.img contains only the kernel, there is no init_boot.img no recovery.img, and the vendor_boot.img contains init_boot.cpio, ramdisk.cpio and recovery.cpio
 
 
 ## Disclaimer - UNOFFICIAL AND EXPERIMENTAL
