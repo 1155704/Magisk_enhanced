@@ -1,7 +1,3 @@
-![](docs/images/logo.png)
-
-[![Downloads](https://img.shields.io/badge/dynamic/json?color=green&label=Downloads&query=totalString&url=https%3A%2F%2Fraw.githubusercontent.com%2Ftopjohnwu%2Fmagisk-files%2Fcount%2Fcount.json&cacheSeconds=1800)](https://raw.githubusercontent.com/topjohnwu/magisk-files/count/count.json)
-
 ## How to root an android device by patching the boot_vendor.img image in some specific cases
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 - codenames "flare" and "spark", and probably more.
