@@ -78,11 +78,11 @@ Here's how:
 
    - \assets\chromeos (whole folder)
 
- - add the boot_patch.sh file from the /script folder above on this repository in the same folder
+ - the boot_patch.sh file from the /script folder above on this repository
 
- - add https://github.com/topjohnwu/Magisk/blob/master/scripts/util_functions.sh in the same folder
+ - https://github.com/topjohnwu/Magisk/blob/master/scripts/util_functions.sh 
 
- - add the original vendor_boot.img file from your device official firmware/rom
+ - the original vendor_boot.img file from your device official firmware/rom
 
 After this run the boot_patch.sh script with the command "bash ./boot_patch.sh vendor_boot.img"
 
