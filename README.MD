@@ -49,7 +49,7 @@ This is the easiest way. Download the latest magisk.apk stable release file and 
 
 You can use the app named "APK Editor" to do so, or other utilities you find elsewhere (you cant directly inject it with a zip file manager as the signature of the apk will be broken and you wont be able to install it).
 
-After that, installed this modified magisk apk on the rooted device (delete the magisk app before if it's already installed), transfer your vendor_boot.img to the rooted device and use the modified magisk app to patch it by using the “Select and Patch a File” option on the patched magisk app.
+After that, install this modified magisk apk on the rooted device (delete the magisk app before if it's already installed), transfer your vendor_boot.img to the rooted device and use the modified magisk app to patch it by using the “Select and Patch a File” option on the patched magisk app.
 
 Retreive the generated "magisk_patched_xxx.img" image file then reboot your unrooted device to bootloader/fastboot using "adb reboot bootloader" and flash the patched image by using "fastboot flash vendor_boot <name of your magisk patched file.img>" then reboot your device with "fastboot reboot".
 
