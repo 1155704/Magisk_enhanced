@@ -27,7 +27,9 @@ If the conditions are met, there are still more you need to check, keep reading 
 
 ## Unpacking boot.img and vendor_boot.img
 
-Use https://github.com/svoboda18/magiskboot for windows or https://topjohnwu.github.io/Magisk/tools.html for linux to unpack your boot.img and vendor_boot.img images.
+Use https://topjohnwu.github.io/Magisk/tools.html for linux to unpack your boot.img and vendor_boot.img images. (I did in on ubuntu 24.04 LTS VM but it should work on any standard linux distribution).
+
+( https://github.com/svoboda18/magiskboot for windows does not work as it does not unpack all the cpio contained in the vendor_boot.img)
 
 If your boot.img image contains only a file named "kernel" and your vendor_boot.img has the following structure:
 
