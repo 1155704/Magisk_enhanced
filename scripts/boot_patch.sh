@@ -105,53 +105,60 @@ case $? in
 esac
 
 #########
-# Checking ramdisk cpio file
+# Checking cpio files
 #########
 
-if [ -e ./vendor_ramdisk/init_boot.cpio ]; then # for some xiaomi devices
-  RAMDISK_FILE="./vendor_ramdisk/init_boot.cpio"
+if find . -name "*.cpio" | grep -vF "./ramdisk.cpio" >null; then NONCOMPLIANT=1; fi #searching for any cpio file other than ./ramdisk.cpio
+   if [ $NONCOMPLIANT -eq 1 ]; then 
+     ui_print "- This boot image contains non compliant cpio:"
+     find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
+     while read p; do
+       ui_print "- $p"
+       if [[ $p == *"init.cpio" ]]; then
+          RAMDISK_FILE=$p
+          RAMDISK_EXISTS=1
+       fi
+     done <tmp.log
+     rm tmp.log
+    fi  
+elif [ -e ramdisk.cpio ]; then
+  RAMDISK_FILE="ramdisk.cpio"
+  RAMDISK_EXISTS=1
 else
-  RAMDISK_FILE="ramdisk.cpio" #for other devices
-fi
+  RAMDISK_EXISTS=0
+if
 
 ###################
 # Ramdisk Restores
 ###################
 
-# Test patch status and do restore
-ui_print "- Checking ramdisk status"
-if [ -e $RAMDISK_FILE ]; then
+if [ $RAMDISK_EXISTS eq 1 ]; then
   ./magiskboot cpio $RAMDISK_FILE test
   STATUS=$?
-  SKIP_BACKUP=""
-else
-  # Stock A only legacy SAR, or some Android 13 GKIs
-  STATUS=0
-  SKIP_BACKUP="#"
-fi
-case $STATUS in
-  0 )
-    # Stock boot
-    ui_print "- Stock boot image detected"
-    SHA1=$(./magiskboot sha1 "$BOOTIMAGE" 2>/dev/null)
-    cat $BOOTIMAGE > stock_boot.img
-    cp -af $RAMDISK_FILE $RAMDISK_FILE.orig 2>/dev/null
-    ;;
-  1 )
-    # Magisk patched
-    ui_print "- Magisk patched boot image detected"
-    ./magiskboot cpio $RAMDISK_FILE \
-    "extract .backup/.magisk config.orig" \
-    "restore"
-    cp -af $RAMDISK_FILE $RAMDISK_FILE.orig
-    rm -f stock_boot.img
-    ;;
-  2 )
-    # Unsupported
-    ui_print "! Boot image patched by unsupported programs"
-    abort "! Please restore back to stock boot image"
-    ;;
-esac
+  case $STATUS in
+    0 )
+      # Stock boot
+      ui_print "- Stock boot image detected"
+      SHA1=$(./magiskboot sha1 "$BOOTIMAGE" 2>/dev/null)
+      cat $BOOTIMAGE > stock_boot.img
+      cp -af $RAMDISK_FILE $RAMDISK_FILE.orig 2>/dev/null
+      ;;
+    1 )
+      # Magisk patched
+      ui_print "- Magisk patched boot image detected"
+      ./magiskboot cpio $RAMDISK_FILE \
+      "extract .backup/.magisk config.orig" \
+      "restore"
+      cp -af $RAMDISK_FILE $RAMDISK_FILE.orig
+      rm -f stock_boot.img
+      ;;
+    2 )
+      # Unsupported
+      ui_print "! Boot image patched by unsupported programs"
+      abort "! Please restore back to stock boot image"
+      ;;
+    esac
+if
 
 if [ -f config.orig ]; then
   # Read existing configs
@@ -168,38 +175,42 @@ fi
 # Ramdisk Patches
 ##################
 
-ui_print "- Patching ramdisk"
+if [ $RAMDISK_EXISTS -eq 1 ]; then
 
-$BOOTMODE && [ -z "$PREINITDEVICE" ] && PREINITDEVICE=$(./magisk --preinit-device)
-
-# Compress to save precious ramdisk space
-./magiskboot compress=xz magisk magisk.xz
-./magiskboot compress=xz stub.apk stub.xz
-./magiskboot compress=xz init-ld init-ld.xz
-
-echo "KEEPVERITY=$KEEPVERITY" > config
-echo "KEEPFORCEENCRYPT=$KEEPFORCEENCRYPT" >> config
-echo "RECOVERYMODE=$RECOVERYMODE" >> config
-if [ -n "$PREINITDEVICE" ]; then
-  ui_print "- Pre-init storage partition: $PREINITDEVICE"
-  echo "PREINITDEVICE=$PREINITDEVICE" >> config
+  ui_print "- Patching cpio"
+  
+  $BOOTMODE && [ -z "$PREINITDEVICE" ] && PREINITDEVICE=$(./magisk --preinit-device)
+  
+  # Compress to save precious ramdisk space
+  ./magiskboot compress=xz magisk magisk.xz
+  ./magiskboot compress=xz stub.apk stub.xz
+  ./magiskboot compress=xz init-ld init-ld.xz
+  
+  echo "KEEPVERITY=$KEEPVERITY" > config
+  echo "KEEPFORCEENCRYPT=$KEEPFORCEENCRYPT" >> config
+  echo "RECOVERYMODE=$RECOVERYMODE" >> config
+  if [ -n "$PREINITDEVICE" ]; then
+    ui_print "- Pre-init storage partition: $PREINITDEVICE"
+    echo "PREINITDEVICE=$PREINITDEVICE" >> config
+  fi
+  [ -n "$SHA1" ] && echo "SHA1=$SHA1" >> config
+  
+  ./magiskboot cpio $RAMDISK_FILE \
+  "add 0750 init magiskinit" \
+  "mkdir 0750 overlay.d" \
+  "mkdir 0750 overlay.d/sbin" \
+  "add 0644 overlay.d/sbin/magisk.xz magisk.xz" \
+  "add 0644 overlay.d/sbin/stub.xz stub.xz" \
+  "add 0644 overlay.d/sbin/init-ld.xz init-ld.xz" \
+  "patch" \
+  "backup $RAMDISK_FILE.orig" \
+  "mkdir 000 .backup" \
+  "add 000 .backup/.magisk config" \
+  || abort "! Unable to patch cpio"
+  
+  rm -f $RAMDISK_FILE.orig config *.xz
+  
 fi
-[ -n "$SHA1" ] && echo "SHA1=$SHA1" >> config
-
-./magiskboot cpio $RAMDISK_FILE \
-"add 0750 init magiskinit" \
-"mkdir 0750 overlay.d" \
-"mkdir 0750 overlay.d/sbin" \
-"add 0644 overlay.d/sbin/magisk.xz magisk.xz" \
-"add 0644 overlay.d/sbin/stub.xz stub.xz" \
-"add 0644 overlay.d/sbin/init-ld.xz init-ld.xz" \
-"patch" \
-"$SKIP_BACKUP backup $RAMDISK_FILE.orig" \
-"mkdir 000 .backup" \
-"add 000 .backup/.magisk config" \
-|| abort "! Unable to patch ramdisk"
-
-rm -f $RAMDISK_FILE.orig config *.xz
 
 #################
 # Binary Patches
@@ -219,6 +230,7 @@ done
 
 if [ -f kernel ]; then
   PATCHEDKERNEL=false
+   ui_print "- Patching kernel"
   # Remove Samsung RKP
   ./magiskboot hexpatch kernel \
   49010054011440B93FA00F71E9000054010840B93FA00F7189000054001840B91FA00F7188010054 \
@@ -247,6 +259,9 @@ if [ -f kernel ]; then
   # If the kernel doesn't need to be patched at all,
   # keep raw kernel to avoid bootloops on some weird devices
   $PATCHEDKERNEL || rm -f kernel
+  
+elif [ $RAMDISK_EXISTS -eq 0 ]; then
+  abort "! Selected boot image does not contain anything to patch"
 fi
 
 #################
@@ -255,12 +270,18 @@ fi
 
 ui_print "- Repacking boot image"
 ./magiskboot repack "$BOOTIMAGE" || abort "! Unable to repack boot image"
-
+  
 # Sign chromeos boot
 $CHROMEOS && sign_chromeos
 
 # Restore the original boot partition path
 [ -e "$BOOTNAND" ] && BOOTIMAGE="$BOOTNAND"
+
+ui_print "- THIS MAGISK RELEASE IS UNOFFICIAL"
+ui_print "- THIS MAGISK RELEASE IS UNSUPPORTED"
+ui_print "- USE AT YOUR OWN RISK"
+ui_print "- DO NOT ASK ABOUT IT"
+ui_print "- IN THE OFFICIAL MAGISK GITHUB"
 
 # Reset any error code
 true
