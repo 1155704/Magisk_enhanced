@@ -109,32 +109,38 @@ esac
 #########
 
 if find . -name "*.cpio" | grep -vF "./ramdisk.cpio" >null; then NONCOMPLIANT=1; fi #searching for any cpio file other than ./ramdisk.cpio
-   if [ $NONCOMPLIANT -eq 1 ]; then 
-     ui_print "- This boot image contains non compliant cpio:"
+
+if [ $NONCOMPLIANT -eq 1 ]; then 
+    ui_print "- This boot image contains non compliant cpio:"
      find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
      while read p; do
-       ui_print "- $p"
-       if [[ $p == *"init.cpio" ]]; then
+       echo "- $p"
+       if [[ $p == *"init_boot.cpio" ]]; then
           RAMDISK_FILE=$p
           RAMDISK_EXISTS=1
+	  ui_print "- Selected ramdisk file is $RAMDISK_FILE"
        fi
      done <tmp.log
      rm tmp.log
-    fi  
 elif [ -e ramdisk.cpio ]; then
   RAMDISK_FILE="ramdisk.cpio"
   RAMDISK_EXISTS=1
+  ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 else
   RAMDISK_EXISTS=0
-if
+  ui_print "- No ramdisk file found - skipping"
+fi
 
 ###################
 # Ramdisk Restores
 ###################
 
-if [ $RAMDISK_EXISTS eq 1 ]; then
+ui_print "- Checking ramdisk status"
+
+if [ $RAMDISK_EXISTS -eq 1 ]; then
   ./magiskboot cpio $RAMDISK_FILE test
   STATUS=$?
+
   case $STATUS in
     0 )
       # Stock boot
@@ -158,7 +164,7 @@ if [ $RAMDISK_EXISTS eq 1 ]; then
       abort "! Please restore back to stock boot image"
       ;;
     esac
-if
+fi
 
 if [ -f config.orig ]; then
   # Read existing configs
@@ -177,7 +183,7 @@ fi
 
 if [ $RAMDISK_EXISTS -eq 1 ]; then
 
-  ui_print "- Patching cpio"
+  ui_print "- Patching ramdisk"
   
   $BOOTMODE && [ -z "$PREINITDEVICE" ] && PREINITDEVICE=$(./magisk --preinit-device)
   
