@@ -41,3 +41,9 @@ The app will list any non compliant ramdisk contained in the image file you sele
 If the input file contains an init_boot ramdisk, after flashing the patched image file to the partition of the same name as the input file you selected (so for example, if using vendor_boot.img as input, flash the patched file to the "vendor_boot" partition), if everything goes well your device should now be rooted!
 
 If that's the case and your device model is not listed here, please create an issue on this github page and write down your device model (be as specific as possible) so that i can add it to the list :)
+
+## Credits
+
+All the contributors of the official magisk app https://github.com/topjohnwu/Magisk , especially https://github.com/yujincheng08
+
+The kind people who helped me figure out all of this on XDA forum https://xdaforums.com/t/magisk-general-support-discussion.3432382/page-2991  - pndwal - J.Michael - badabing2003 - DiamondJohn - Nergal di Cuthah - ...
