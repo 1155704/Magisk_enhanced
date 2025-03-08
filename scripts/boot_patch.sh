@@ -108,52 +108,55 @@ esac
 # Checking cpio files
 #########
 
+#finding which cpio has priority 
+
+ find . -name "*.cpio" > tmp.log
+ 
+ while read p; do
+       ui_print "- $p"
+       if [[ $p == "./ramdisk.cpio" ]]; then
+               RAMDISK_FILE=$p
+               RAMDISK_EXISTS=1
+	       ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+	
+   	elif [[ $p == *"init_boot.cpio" ]]; then
+    	        RAMDISK_FILE=$p
+                RAMDISK_EXISTS=1
+		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+		NONCOMPLIANT=1
+  
+         elif [[ $p == *"ramdisk.cpio" ]]; then
+    	        RAMDISK_FILE=$p
+                RAMDISK_EXISTS=1
+		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+		NONCOMPLIANT=1
+  
+        elif [[ $p == *"recovery.cpio" ]]; then
+    	        RAMDISK_FILE=$p
+                RAMDISK_EXISTS=1
+		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+		NONCOMPLIANT=1
+  
+        else    RAMDISK_EXISTS=0
+	        ui_print "- No ramdisk file found - skipping"
+	 
+       fi
+  done <tmp.log
+  rm tmp.log
+
+# searching for other non compliants cpio
+
 if find . -name "*.cpio" | grep -vF "./ramdisk.cpio" >null; then NONCOMPLIANT=1; fi #searching for any cpio file other than ./ramdisk.cpio
 
-if [ -e ramdisk.cpio ]; then
+if [ $NONCOMPLIANT -eq 1 ]; then
 
-  RAMDISK_FILE="ramdisk.cpio"
-  RAMDISK_EXISTS=1
-  ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-  if [ $NONCOMPLIANT -eq 1 ]; then 
-  ui_print "- This boot image contains non compliant cpio:"
-  find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
-     while read p; do
-       echo "- $p"
-     done <tmp.log
-     rm tmp.log
-  fi
-  
-elif [ $NONCOMPLIANT -eq 1 ]; then 
     ui_print "- This boot image contains non compliant cpio:"
-     find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
-     while read p; do
-       echo "- $p"
-       if [[ $p == *"init_boot.cpio" ]]; then
-          RAMDISK_FILE=$p
-          RAMDISK_EXISTS=1
-	  ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-       fi
-     done <tmp.log
-     rm tmp.log
-     
-elif [ $NONCOMPLIANT -eq 1 ]; then 
-    ui_print "- This boot image contains non compliant cpio:"
-     find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
-     while read p; do
-       echo "- $p"
-       if [[ $p == *"ramdisk.cpio" ]]; then
-          RAMDISK_FILE=$p
-          RAMDISK_EXISTS=1
-	  ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-       fi
-     done <tmp.log
-     rm tmp.log
-     
-else
 
-  RAMDISK_EXISTS=0
-  ui_print "- No ramdisk file found - skipping"
+    find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
+     while read p; do
+       echo "- $p"
+     done <tmp.log
+     rm tmp.log
   
 fi
 
