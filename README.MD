@@ -18,32 +18,13 @@ Also it's an experimental rooting method, so it might not work. If you know what
 
  - Your device fastboot firmware do not contain an init_boot.img image,
 
+ - Your device fastboot firmware do not contain a recovery.img image,
+
  - your device fastboot firmware has a boot.img image, but patching it with magisk doesn't root your device. There are no errors in the patching process, but the system is still not rooted after it.
 
- - Your device fastboot firmware has a boot_vendor.img image.
+If all the 4 above conditions are not met, your device is not concerned so no need to waste time on it, sorry.
 
-If all the 3 above conditions are not met, your device is not concerned so no need to waste time on it, sorry.
-
-If the conditions are met, there are still more you need to check, keep reading below.
-
-
-## Unpacking boot.img and vendor_boot.img
-
-Use https://topjohnwu.github.io/Magisk/tools.html for linux to unpack your boot.img and vendor_boot.img images. (I did in on ubuntu 24.04 LTS VM but it should work on any standard linux distribution).
-
-( https://github.com/svoboda18/magiskboot for windows does not work as it does not unpack all the cpio contained in the vendor_boot.img)
-
-If your boot.img image contains only a file named "kernel" and your vendor_boot.img has the following structure:
-
-Root -> vendor_ramdisks (folder)
-           -> init_boot.cpio
-           -> ramdisk.cpio
-           -> recovery.cpio
-
-     -> dtb
-
-Then this modified "boot_patch.sh" script might be able to patch your vendor_boot.img image to root your device!
-
+If the conditions are met, it means the boot ramdisk could be located on your vendor_boot.img image, so try what follows.
 
 ## Usage
 
