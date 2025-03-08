@@ -42,6 +42,8 @@ If the input file contains an init_boot ramdisk, after flashing the patched imag
 
 If that's the case and your device model is not listed here, please create an issue on this github page and write down your device model (be as specific as possible) so that i can add it to the list :)
 
+Note that this app should also work on regular compliant device images files the same way the official app does (with a bit more error checking).
+
 ## Credits
 
 All the contributors of the official magisk app https://github.com/topjohnwu/Magisk , especially https://github.com/yujincheng08
