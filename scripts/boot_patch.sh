@@ -142,7 +142,7 @@ ui_print "- Searching for a cpio to select"
  find . -name "*.cpio" > tmp.log
 if [ $RAMDISK_SELECTED -eq 0 ]; then 
       while read p; do
-      	 if [[ $p == "./ramdisk.cpio" ]]; then
+      	 if [[ $p == "*init_boot.cpio" ]]; then
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
@@ -155,7 +155,7 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
  find . -name "*.cpio" > tmp.log
 if [ $RAMDISK_SELECTED -eq 0 ]; then 
       while read p; do
-      	 if [[ $p == "./recovery.cpio" ]]; then
+      	 if [[ $p == "*ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
@@ -164,6 +164,19 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       done <tmp.log
       rm tmp.log
   fi
+
+find . -name "*.cpio" > tmp.log
+if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      while read p; do
+      	 if [[ $p == "*recovery.cpio" ]]; then
+               RAMDISK_FILE=$p
+               RAMDISK_EXISTS=1
+	       RAMDISK_SELECTED=1
+	       ui_print "- Selected cpio file is $RAMDISK_FILE"
+          fi
+      done <tmp.log
+      rm tmp.log
+fi
 
   if [ $RAMDISK_SELECTED -eq 0 ]; then 
 	ui_print "- There are no cpio file to select "
