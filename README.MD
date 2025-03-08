@@ -18,7 +18,7 @@ Also it's experimental, so it might not work. If you know what you are doing, it
 
 ## How to know if your device could be non compliant:
 
- - YOUR DEVICE BOOTLOADER MUST BE UNLOCKED. IF IT's NOT, DO NOT TRY OR YOU WILL BRICK YOUR IT.
+ - YOUR DEVICE BOOTLOADER MUST BE UNLOCKED. IF IT'S NOT, DO NOT TRY OR YOU WILL BRICK YOUR IT.
 
  - Your device fastboot firmware do not contain an init_boot.img image,
 
