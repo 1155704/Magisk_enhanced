@@ -38,6 +38,3 @@ After that, install this modified magisk apk on your device (delete the magisk a
 Retreive the generated "magisk_patched_xxx.img" image file then reboot your unrooted device to bootloader/fastboot using "adb reboot bootloader" and flash the patched image by using "fastboot flash vendor_boot <name of your magisk patched file.img>" then reboot your device with "fastboot reboot".
 
 If everything goes well the next time you start the magisk app you should see that the device is now rooted!
-
-This will generate a patched vendor_boot.img file that you can flash to your device as explained before. If it works then magisk will tell you that it needs to be reinstalled because it wasn't generated on the device itself, so you need to re-generate a patched vendor_boot.img from your rooted device with a modified magisk.apk as explained earlier, flash it, and you're good to go :)
-
