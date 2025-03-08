@@ -121,37 +121,53 @@ rm tmp.log
 
 #finding which cpio has priority 
 
-#assuming there are no target cpio until one is found
+#assuming there are no target cpio until one is found and selected
 
 RAMDISK_EXISTS=0
+RAMDISK_SELECTED=0
+
+ui_print "- Searching for a cpio to select"
 
  find . -name "*.cpio" > tmp.log
- 
  while read p; do
        if [[ $p == "./ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
-	       break
-	
-   	elif [[ $p == *"init_boot.cpio" ]]; then
-    	        RAMDISK_FILE=$p
-                RAMDISK_EXISTS=1
-                break
-  
-         elif [[ $p == *"ramdisk.cpio" ]]; then
-    	        RAMDISK_FILE=$p
-                RAMDISK_EXISTS=1
-                break
-  
-        elif [[ $p == *"recovery.cpio" ]]; then
-    	        RAMDISK_FILE=$p
-                RAMDISK_EXISTS=1
-                break
+	       RAMDISK_SELECTED=1
+	       ui_print "- Selected cpio file is $RAMDISK_FILE"
        fi
   done <tmp.log
   rm tmp.log
 
-ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+ find . -name "*.cpio" > tmp.log
+if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      while read p; do
+      	 if [[ $p == "./ramdisk.cpio" ]]; then
+               RAMDISK_FILE=$p
+               RAMDISK_EXISTS=1
+	       RAMDISK_SELECTED=1
+	       ui_print "- Selected cpio file is $RAMDISK_FILE"
+          fi
+      done <tmp.log
+      rm tmp.log
+  fi
+
+ find . -name "*.cpio" > tmp.log
+if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      while read p; do
+      	 if [[ $p == "./recovery.cpio" ]]; then
+               RAMDISK_FILE=$p
+               RAMDISK_EXISTS=1
+	       RAMDISK_SELECTED=1
+	       ui_print "- Selected cpio file is $RAMDISK_FILE"
+          fi
+      done <tmp.log
+      rm tmp.log
+  fi
+
+  if [ $RAMDISK_SELECTED -eq 0 ]; then 
+	ui_print "- There are no cpio file to select "
+  fi
 
 ###################
 # Ramdisk Restores
