@@ -1,9 +1,8 @@
-## How to root an android device by patching the boot_vendor.img image in some specific cases
+## How to root a non compliant android device by patching the boot_vendor.img image
 
-This is the case of the Xiaomi Redmi Pad SE 8.7 - codenames "flare" and "spark", and probably more.
+Some android devices have boot structures that are non compliant with the android standards: the boot partition contains only the kernel, there is no init_boot partition, no recovery partition, and the vendor_boot partition contains init_boot.cpio (with possibly additional cpios like recovery.cpio and ramdisk.cpio).
 
-They have non compliant boot structure: the boot.img contains only the kernel, there is no init_boot.img, no recovery.img, and the vendor_boot.img contains init_boot.cpio (with possibly additional cpios like recovery.cpio and ramdisk.cpio).
-
+This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more.
 
 ## Disclaimer - UNOFFICIAL AND EXPERIMENTAL
 
