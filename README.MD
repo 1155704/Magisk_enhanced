@@ -32,12 +32,12 @@ If the conditions are met, it means your device could be non compliant and the b
 
 ## Usage
 
-Download the latest magisk.apk stable release file and modify it to replace the file magisk.apk/assets/boot_patch.sh by the one you can download above in the "/scripts" folder.
+Download the modified magisk app on the right of this page from the "release" section.
 
-You can use the app named "APK Editor" to do so, or other utilities you find elsewhere (you cant directly inject it with a zip file manager as the signature of the apk will be broken and you wont be able to install it).
+Follow the instructions described in the official magisk guide https://topjohnwu.github.io/Magisk/install.html , but instead of using a boot.img, init_boot.img or recovery.img image, use the vendor_boot.img image, or any other image that could contain the init_boot ramdisk).
 
-After that, install this modified magisk apk on your device (delete the magisk app before if it's already installed), transfer your vendor_boot.img to your device and use the modified magisk app to patch it by using the “Select and Patch a File” option on the patched magisk app.
+The app will list any non compliant ramdisk contained in the image file you selected, search if one of them is the init_boot ramdisk, and patch it if it is.
 
-Retreive the generated "magisk_patched_xxx.img" image file then reboot your unrooted device to bootloader/fastboot using "adb reboot bootloader" and flash the patched image by using "fastboot flash vendor_boot <name of your magisk patched file.img>" then reboot your device with "fastboot reboot".
+If the input file contains an init_boot ramdisk, after flashing the patched image file to the partition of the same name as the input file you selected (so for example, if using vendor_boot.img as input, flash the patched file to the "vendor_boot" partition), if everything goes well your device should now be rooted!
 
-If everything goes well the next time you start the magisk app you should see that the device is now rooted!
+If that's the case and your device model is not listed here, please create an issue on this github page and write down your device model (be as specific as possible) so that i can add it to the list :)
