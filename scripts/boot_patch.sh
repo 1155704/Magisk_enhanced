@@ -108,6 +108,17 @@ esac
 # Checking cpio files
 #########
 
+# listing all cpios
+
+ui_print "- This boot image contains the following cpio :"
+
+find . -name "*.cpio" > tmp.log
+
+while read p; do
+        echo "- $p"
+done <tmp.log
+rm tmp.log
+
 #finding which cpio has priority 
 
 #assuming there are no target cpio until one is found
@@ -120,48 +131,27 @@ RAMDISK_EXISTS=0
        if [[ $p == "./ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
-	       ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 	       break
 	
    	elif [[ $p == *"init_boot.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
-		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-		NONCOMPLIANT=1
                 break
   
          elif [[ $p == *"ramdisk.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
-		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-		NONCOMPLIANT=1
                 break
   
         elif [[ $p == *"recovery.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
-		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
-		NONCOMPLIANT=1
                 break
        fi
   done <tmp.log
   rm tmp.log
 
-# searching for other non compliants cpio
-
-if find . -name "*.cpio" | grep -vF "./ramdisk.cpio" >null; then NONCOMPLIANT=1; fi #searching for any cpio file other than ./ramdisk.cpio
-
-if [ $NONCOMPLIANT -eq 1 ]; then
-
-    ui_print "- This boot image contains non compliant cpio:"
-
-    find . -name "*.cpio" | grep -vF "./ramdisk.cpio" > tmp.log
-     while read p; do
-       echo "- $p"
-     done <tmp.log
-     rm tmp.log
-  
-fi
+ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 
 ###################
 # Ramdisk Restores
