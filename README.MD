@@ -13,7 +13,7 @@ The following rooting method by patching the vendor_boot.img image is not offici
 Also it's experimental, so it might not work. If you know what you are doing, it shouldn't brick your device, worst case scenario you will have to reflash the original vendor_boot.img and that's it, but use at your own risk. I'm not responsible if you brick your device because you used this tool.
 
 
-## How to know if your device might fall into that category:
+## How to know if your device could be non compliant:
 
  - Your device bootloader must be unlocked. Dont try otherwise or you might brick it.
 
@@ -25,7 +25,7 @@ Also it's experimental, so it might not work. If you know what you are doing, it
 
 If all the 4 above conditions are not met, your device is not concerned and trying to patch your vendor_boot.img will not work, so do not try and stop here.
 
-If the conditions are met, it means the boot ramdisk could be located on your vendor_boot.img image, so try what follows.
+If the conditions are met, it means your device could be non compliant and the boot ramdisk could be not located on your vendor_boot.img image, so try what follows.
 
 ## Usage
 
