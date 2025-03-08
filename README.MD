@@ -46,7 +46,7 @@ Note that this app should also work on regular compliant device images files the
 
 ## Other infos
 
-If you want to modify the boot_patch.sh script used for this app and generate your own custom version of magisk, the easiest way is to download an APK editor file (i used this one: https://github.com/PatrickAlex2019/ApkEditor ) to modify the boot_patch.sh script contained inside the APK by your own.
+If you want to modify the boot_patch.sh script used for this app and generate your own custom version of magisk, the easiest way is to download an APK editor file (i used this one: https://github.com/PatrickAlex2019/ApkEditor ) to switch the boot_patch.sh script contained inside the APK by your own.
 
 ## Credits
 
