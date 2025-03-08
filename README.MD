@@ -44,7 +44,7 @@ If that's the case and your device model is not listed here, please create an is
 
 Note that this app should also work on regular compliant device images files the same way the official app does (with a bit more error checking).
 
-## Advanced: creating a custom version of the app with your own custom boot_patch.sh script
+## Other infos
 
 If you want to modify the boot_patch.sh script used for this app and generate your own custom version of magisk, the easiest way is to download an APK editor file (i used this one: https://github.com/PatrickAlex2019/ApkEditor ) to modify the boot_patch.sh script contained inside the APK by your own
 
