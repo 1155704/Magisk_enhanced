@@ -1,4 +1,4 @@
-## UNOFFICIAL version of magisk allowing to patch uncompliant android devices vendor_boot images
+## Custom version of magisk allowing to patch uncompliant android devices vendor_boot images
 
 Some android devices have boot structures that are non compliant with the android standards: the boot partition contains only the kernel, there is no init_boot partition, no recovery partition, and the vendor_boot partition contains init_boot.cpio (with possibly additional cpios like recovery.cpio and ramdisk.cpio).
 
