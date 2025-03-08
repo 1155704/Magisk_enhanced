@@ -11,7 +11,7 @@ If you are reading this as a developper working on these devices or another one 
 
 ## Disclaimer - UNOFFICIAL AND EXPERIMENTAL
 
-The following rooting method by patching the vendor_boot.img image is not officially supported by magisk, so please dont ask them for help about this in the official magisk github, thank you. 
+The following rooting method by patching the vendor_boot.img image is not officially supported by magisk, so please DONT ask them for help about this in the official magisk github, thank you. 
 
 Also it's experimental, so it might not work. If you know what you are doing, it shouldn't brick your device, worst case scenario you will have to reflash the original vendor_boot.img and that's it, but use at your own risk. I'm not responsible if you brick your device because you used this tool.
 
