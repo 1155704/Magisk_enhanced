@@ -4,6 +4,8 @@ Some android devices have boot structures that are non compliant with the androi
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more.
 
+The official magisk app do not support non compliant devices, thus trying to patch boot_vendor.img of these non compliant devices will have no effect (the content of the result "magisk_patched-xxx" file will be identical to the original file, so flashing it will change nothing).
+
 ## Disclaimer - UNOFFICIAL AND EXPERIMENTAL
 
 The following rooting method by patching the vendor_boot.img image is not officially supported by magisk, so please dont ask them for help about this, thank you. 
