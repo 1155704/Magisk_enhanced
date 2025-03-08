@@ -21,7 +21,7 @@ Also it's experimental, so it might not work. If you know what you are doing, it
 
  - Your device fastboot firmware do not contain a recovery.img image,
 
- - your device fastboot firmware has a boot.img image, but patching it with magisk doesn't root your device. There are no errors in the patching process, but the system is still not rooted after it.
+ - your device fastboot firmware has a boot.img image, but patching it with the official magisk app doesn't root your device. There are no errors in the patching process, but the system is still not rooted after it.
 
 If all the 4 above conditions are not met, your device is not concerned and trying to patch your vendor_boot.img will not work, so do not try and stop here.
 
