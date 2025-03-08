@@ -22,7 +22,7 @@ Also it's an experimental rooting method, so it might not work. If you know what
 
  - your device fastboot firmware has a boot.img image, but patching it with magisk doesn't root your device. There are no errors in the patching process, but the system is still not rooted after it.
 
-If all the 4 above conditions are not met, your device is not concerned so no need to waste time on it, sorry.
+If all the 4 above conditions are not met, your device is not concerned and trying to patch your vendor_boot.img will not work, so do not try and stop here.
 
 If the conditions are met, it means the boot ramdisk could be located on your vendor_boot.img image, so try what follows.
 
