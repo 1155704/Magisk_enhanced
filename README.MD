@@ -47,48 +47,15 @@ Then this modified "boot_patch.sh" script might be able to patch your vendor_boo
 
 ## Usage
 
-### From an already rooted android device
-
-This is the easiest way. Download the latest magisk.apk stable release file and modify it to replace the file magisk.apk/assets/boot_patch.sh by the one you can download above in the "/scripts" folder.
+Download the latest magisk.apk stable release file and modify it to replace the file magisk.apk/assets/boot_patch.sh by the one you can download above in the "/scripts" folder.
 
 You can use the app named "APK Editor" to do so, or other utilities you find elsewhere (you cant directly inject it with a zip file manager as the signature of the apk will be broken and you wont be able to install it).
 
-After that, install this modified magisk apk on the rooted device (delete the magisk app before if it's already installed), transfer your vendor_boot.img to the rooted device and use the modified magisk app to patch it by using the “Select and Patch a File” option on the patched magisk app.
+After that, install this modified magisk apk on your device (delete the magisk app before if it's already installed), transfer your vendor_boot.img to your device and use the modified magisk app to patch it by using the “Select and Patch a File” option on the patched magisk app.
 
 Retreive the generated "magisk_patched_xxx.img" image file then reboot your unrooted device to bootloader/fastboot using "adb reboot bootloader" and flash the patched image by using "fastboot flash vendor_boot <name of your magisk patched file.img>" then reboot your device with "fastboot reboot".
 
 If everything goes well the next time you start the magisk app you should see that the device is now rooted!
-
-However, magisk will say you have to reinstall it because the patch was built on a different device, so some parameters are off.
-
-To correct this you need to repeat the patching process from your own device, and after flashing the patched vendor_boot generated from your own device, there should be no more errors :)
-
-
-### From a PC on an linux environment
-
-If you dont have an already rooted android device available you need to use a PC on linux to patch the boot_vendor.img file. I used Ubuntu 22.04 LTS on a VM for this, but any recent popular distribution should do.
-
-Here's how:
-
- - download the latest magisk.apk official release file and extract the following files in the same folder:
-
-   - \lib\x86_64\libinit-ld.so -> rename to init-ld
-
-   - \lib\x86_64\libmagiskboot.so -> rename to magiskboot
-
-   - \lib\x86_64\libmagisk.so -> rename to magisk
-
-   - \assets\stub.apk
-
-   - \assets\chromeos (whole folder)
-
- - the boot_patch.sh file from the /scripts folder above on this repository ( https://github.com/NeutroGe/Vendor_boot_img_patcher_tool/blob/master/scripts/boot_patch.sh )
-
- - https://github.com/topjohnwu/Magisk/blob/master/scripts/util_functions.sh 
-
- - the original vendor_boot.img file from your device official firmware/rom
-
-After this run the boot_patch.sh script with the command "bash ./boot_patch.sh vendor_boot.img"
 
 This will generate a patched vendor_boot.img file that you can flash to your device as explained before. If it works then magisk will tell you that it needs to be reinstalled because it wasn't generated on the device itself, so you need to re-generate a patched vendor_boot.img from your rooted device with a modified magisk.apk as explained earlier, flash it, and you're good to go :)
 
