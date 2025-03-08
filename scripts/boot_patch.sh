@@ -113,7 +113,6 @@ esac
  find . -name "*.cpio" > tmp.log
  
  while read p; do
-       ui_print "- $p"
        if [[ $p == "./ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
