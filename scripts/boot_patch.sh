@@ -110,6 +110,10 @@ esac
 
 #finding which cpio has priority 
 
+#assuming there are no target cpio until one is found
+
+RAMDISK_EXISTS=0
+
  find . -name "*.cpio" > tmp.log
  
  while read p; do
@@ -117,28 +121,28 @@ esac
                RAMDISK_FILE=$p
                RAMDISK_EXISTS=1
 	       ui_print "- Selected ramdisk file is $RAMDISK_FILE"
+	       break
 	
    	elif [[ $p == *"init_boot.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
 		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 		NONCOMPLIANT=1
+                break
   
          elif [[ $p == *"ramdisk.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
 		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 		NONCOMPLIANT=1
+                break
   
         elif [[ $p == *"recovery.cpio" ]]; then
     	        RAMDISK_FILE=$p
                 RAMDISK_EXISTS=1
 		ui_print "- Selected ramdisk file is $RAMDISK_FILE"
 		NONCOMPLIANT=1
-  
-        else    RAMDISK_EXISTS=0
-	        ui_print "- No ramdisk file found - skipping"
-	 
+                break
        fi
   done <tmp.log
   rm tmp.log
