@@ -2,7 +2,7 @@
 
 Some android devices have boot structures that are non compliant with the android standards: the boot partition contains only the kernel, there is no init_boot partition, no recovery partition, and the vendor_boot partition contains init_boot.cpio (with possibly additional cpios like recovery.cpio and ramdisk.cpio).
 
-This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more.
+This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more devices.
 
 The official magisk app do not support non compliant devices, thus trying to patch boot_vendor.img of these non compliant devices will have no effect (the content of the result "magisk_patched-xxx" file will be identical to the original file, so flashing it will change nothing).
 
