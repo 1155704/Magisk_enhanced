@@ -12,7 +12,7 @@ I tested it on my own device and on boot images of other devices and it worked w
 
 ## How to know if your device could be non compliant:
 
- - YOUR DEVICE BOOTLOADER MUST BE FULLY UNLOCKED. IF IT'S NOT, DO NOT TRY TO USE THIS TOOL OR MIGHT BRICK IT.
+ - YOUR DEVICE BOOTLOADER MUST BE FULLY UNLOCKED. IF IT'S NOT, DO NOT TRY TO USE THIS TOOL OR YOU MIGHT BRICK IT.
 
  - Your device fastboot firmware do not contain an init_boot.img image,
 
