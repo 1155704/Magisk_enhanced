@@ -32,9 +32,11 @@ Follow the instructions described in the official magisk guide https://topjohnwu
 
 If the app found something to patch from the image file you selected it will do so, but it doesn't mean that booting or rooting from this modified image will always work. You might have to try different images until you find one that works.
 
-## Other infos
+## Custom modifications
 
 If you want to modify the boot_patch.sh script used for this app and generate your own custom version of magisk, the easiest way is to download an APK editor file (i used this one: https://github.com/PatrickAlex2019/ApkEditor ) to switch the boot_patch.sh script contained inside the APK by your own.
+
+This could be useful if the images contain ramdisks with unconventional names for example. In that case you could modify the script to include these names. Or just create an issue here on github and i'll look into it when i can.
 
 ## Credits
 
