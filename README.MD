@@ -32,10 +32,6 @@ Follow the instructions described in the official magisk guide https://topjohnwu
 
 If the app found something to patch from the image file you selected it will do so, but it doesn't mean that booting or rooting from this modified image will always work. You might have to try different images until you find one that works.
 
-If that's the case and your device model is not listed here, please create an issue on this github page and write down your device model (be as specific as possible) so that i can add it to the list :)
-
-Note that this app should also work on regular compliant device images files the same way the official app does (with a bit more error checking).
-
 ## Other infos
 
 If you want to modify the boot_patch.sh script used for this app and generate your own custom version of magisk, the easiest way is to download an APK editor file (i used this one: https://github.com/PatrickAlex2019/ApkEditor ) to switch the boot_patch.sh script contained inside the APK by your own.
