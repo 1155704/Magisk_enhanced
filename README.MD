@@ -20,7 +20,7 @@ I tested it on my own device and on boot images of other devices and it worked w
 
  - your device fastboot firmware has a boot.img image, but patching it with the official magisk app doesn't root your device. There are no errors in the patching process, but the system is still not rooted after flahsing the patched boot.img image.
 
-If all the 4 above conditions are not met your device should be compatible with the official version of magisk which you should use instead of this one.
+If the 3 above conditions are not met your device should be compatible with the official version of magisk which you should use instead of this one.
 
 If the conditions are met, it means your device could be non compliant and the boot ramdisk could be not located on your vendor_boot.img image, so try what follows.
 
