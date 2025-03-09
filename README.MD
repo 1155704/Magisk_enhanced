@@ -1,6 +1,6 @@
 ## Custom version of magisk allowing to patch unsupported devices
 
-Some android devices have boot structures that dont respect the android standards designed by Google and magisk doesn't support them. This custom version does.
+Some android devices have boot structures that dont comply the android standards designed by Google and magisk doesn't support them. This custom version does.
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and more.
 
@@ -22,7 +22,7 @@ I tested it on my own device and on boot images of other devices and it worked w
 
 If the above conditions are not met your device should be compatible with the official version of magisk which you should use instead of this one (only if your device bootloader is unlocked too of course).
 
-If the conditions are met, it means your device could be non compliant and the boot ramdisk could be not located on your vendor_boot.img image, so try what follows.
+If the conditions are met, it means your device could be non compliant to android standards and the boot ramdisk could be located on another image than boot.img, init_boot.img or recovery.img, so try what follows.
 
 ## Usage
 
