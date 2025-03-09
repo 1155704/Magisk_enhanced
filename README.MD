@@ -1,4 +1,4 @@
-## Custom version of magisk allowing to patch unsupported android devices
+## Custom version of magisk allowing to patch unsupported devices
 
 Some android devices have boot structures that are non compliant with the android standards and Magisk doesn't support them. This unofficial version will process any boot image even if their boot structure is not compliant to android standards. 
 
