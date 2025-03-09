@@ -8,7 +8,7 @@ This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") 
 
 This custom version is unofficial so if you have issues with it ask here : https://github.com/NeutroGe/Magisk_for_unsupported_devices/issues but not on the official Magisk github.
 
-I tested it on my device and on some other boot images of other devices and it worked well. However you are using this tool at your own risks. If you know what you are doing the risks shouldn't be too great tho, at worse reflash the original boot image and that's it. But if you do something wrong and you brick your device using it, it's on you.
+I tested it on my device and on other boot images of other devices and it worked well. However you are using this tool at your own risks. If you know what you are doing the risks shouldn't be too great tho, at worse reflash the original boot image and that's it. But if you do something wrong and you brick your device using it, it's on you.
 
 ## How to know if your device could be non compliant:
 
