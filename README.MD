@@ -30,9 +30,7 @@ Download and install on your device the custom magisk app on the right of this p
 
 Follow the instructions described in the official magisk guide https://topjohnwu.github.io/Magisk/install.html , but instead of using a boot.img, init_boot.img or recovery.img image, use the vendor_boot.img image, or any other image that could potentially contain the init_boot ramdisk.
 
-The app will list any non compliant ramdisk contained in the image file you selected, search if one of them is the init_boot ramdisk, and patch it if it is.
-
-If the input file contains an init_boot ramdisk, after flashing the patched image file to the partition of the same name as the input file you selected (so for example, if using vendor_boot.img as input, flash the patched file to the "vendor_boot" partition), if everything goes well your device should now be rooted!
+If the app found something to patch from the image file you used it will do so, but that doesn't mean booting or rooting with it will always work. You might have to try different images.
 
 If that's the case and your device model is not listed here, please create an issue on this github page and write down your device model (be as specific as possible) so that i can add it to the list :)
 
