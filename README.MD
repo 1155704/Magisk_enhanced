@@ -6,7 +6,7 @@ This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") 
 
 ## Disclaimer
 
-This custom version is unofficial so if you have issues with it ask here but not on the official Magisk github.
+This custom version is unofficial so if you have issues with it ask here : https://github.com/NeutroGe/Magisk_for_unsupported_devices/issues but not on the official Magisk github.
 
 
 ## How to know if your device could be non compliant:
