@@ -28,7 +28,7 @@ If the conditions are met, it means your device could be non compliant to androi
 
 Download and install on your device the custom magisk app on the right of this page from the "release" section.
 
-Follow the instructions described in the official magisk guide https://topjohnwu.github.io/Magisk/install.html , but instead of using a boot.img, init_boot.img or recovery.img image, use the vendor_boot.img image, or any other image that could contain the init_boot ramdisk).
+Follow the instructions described in the official magisk guide https://topjohnwu.github.io/Magisk/install.html , but instead of using a boot.img, init_boot.img or recovery.img image, use the vendor_boot.img image, or any other image that could potentially contain the init_boot ramdisk.
 
 The app will list any non compliant ramdisk contained in the image file you selected, search if one of them is the init_boot ramdisk, and patch it if it is.
 
