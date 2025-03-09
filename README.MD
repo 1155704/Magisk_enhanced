@@ -10,7 +10,7 @@ This custom version is unofficial so if you have issues with it ask here : https
 
 I tested it on my own device and on boot images of other devices and it worked well. However you are using it at your own risks, which shouldn't be too great if you know what you are doing, at worst reflash the original boot image and that's it. But if you do something wrong by mistake and you brick your device using it, it's on you.
 
-## How to know if your device could be non compliant:
+## How to know if this custom version applies to your device:
 
  - YOUR DEVICE BOOTLOADER MUST BE FULLY UNLOCKED. IF IT'S NOT, DO NOT TRY TO USE THIS TOOL OR YOU MIGHT BRICK IT.
 
