@@ -1,6 +1,6 @@
 ## Custom version of magisk allowing to patch unsupported devices
 
-Some android devices have boot structures that do not respect the android standards designed by Google and Magisk doesn't support them. This unofficial version does.
+Some android devices have boot structures that dont not respect the android standards designed by Google and Magisk doesn't support them. This unofficial version does.
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more devices.
 
