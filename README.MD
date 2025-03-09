@@ -1,6 +1,8 @@
-## Custom version of magisk allowing to patch uncompliant android devices images
+## Custom version of magisk allowing to patch unsupported android devices images
 
-Some android devices have boot structures that are non compliant with the android standards: the boot partition contains only the kernel, there is no init_boot partition, no recovery partition, and the init_boot partition is moved inside another partition, like the vendor_boot partition (with possibly additional cpios like recovery.cpio and ramdisk.cpio).
+Some android devices have boot structures that are non compliant with the android standards: the boot partition contains only the kernel, there is no init_boot partition, no recovery partition, and the init_boot partition is moved inside another partition, like the vendor_boot partition (with possibly additional cpios like recovery.cpio and ramdisk.cpio). As they do not respect android standards they are not supported by the official version of Magisk. The author of Magisk, https://x.com/topjohnwu works at Google, so it is logical he wants 3rd party vendors to follow standards Google is implementing for android.
+
+This is where this unofficial version comes in: it will process any boot image even if their structure is not compliant to android standards. Doing so is consequently bypassing Magisk author's will, and I apologize for it, but I dont think it's fair to the end users we are that we cant root our devices and use them at full capabilities because we unknowingly bought them while they are not compliant to android standards.
 
 This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and probably more devices.
 
