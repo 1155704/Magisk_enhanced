@@ -205,14 +205,12 @@ if [ $RAMDISK_EXISTS -eq 1 ]; then
 	RAMDISK_EXISTS=0
         RAMDISK_SELECTED=0
 	INIT_BINARY_EXISTS=0
-     fi
-     
+      fi
+  fi 
      #going back to root dir and cleaning
      cd ..
      rm -R ./test
-
 fi
-
 
 ###################
 # Ramdisk Restores
