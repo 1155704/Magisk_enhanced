@@ -190,26 +190,25 @@ fi
 ui_print "- Checking if an init binary exists in the selected ramdisk"
 
 if [ $RAMDISK_EXISTS -eq 1 ]; then
-
      mkdir ./test
      cp $RAMDISK_FILE ./test
      cp ./magiskboot ./test
      cd ./test
      ./magiskboot cpio $RAMDISK_FILE extract
      if [ -e init ]; then
-        INIT_BINARY_EXISTS=1
-	ui_print "- Init binary found in the selected ramdisk file"
+          INIT_BINARY_EXISTS=1
+	  ui_print "- Init binary found in the selected ramdisk file"
      else
-        ui_print "- There are no init binary in the selected ramdisk file"
-        ui_print "- Skipping ramdisk patching"
-	RAMDISK_EXISTS=0
-        RAMDISK_SELECTED=0
-	INIT_BINARY_EXISTS=0
+          ui_print "- There are no init binary in the selected ramdisk file"
+          ui_print "- Skipping ramdisk patching"
+	  RAMDISK_EXISTS=0
+          RAMDISK_SELECTED=0
+	  INIT_BINARY_EXISTS=0
       fi 
      #going back to root dir and cleaning
-     cd ..
-     rm -R ./test
-fi
+      cd ..
+      rm -R ./test
+  fi
 
 ###################
 # Ramdisk Restores
