@@ -140,8 +140,8 @@ ui_print "- Searching for a cpio to select"
   done <tmp.log
   rm tmp.log
 
- find . -name "*.cpio" > tmp.log
-if [ $RAMDISK_SELECTED -eq 0 ]; then 
+ if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      find . -name "*.cpio" > tmp.log
       while read p; do
       	 if [[ $p == "*init_boot.cpio" ]]; then
                RAMDISK_FILE=$p
@@ -153,8 +153,8 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       rm tmp.log
   fi
 
- find . -name "*.cpio" > tmp.log
-if [ $RAMDISK_SELECTED -eq 0 ]; then 
+ if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      find . -name "*.cpio" > tmp.log
       while read p; do
       	 if [[ $p == "*ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
@@ -166,8 +166,8 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       rm tmp.log
   fi
 
-find . -name "*.cpio" > tmp.log
 if [ $RAMDISK_SELECTED -eq 0 ]; then 
+      find . -name "*.cpio" > tmp.log
       while read p; do
       	 if [[ $p == "*recovery.cpio" ]]; then
                RAMDISK_FILE=$p
@@ -179,10 +179,10 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       rm tmp.log
 fi
 
-  if [ $RAMDISK_SELECTED -eq 0 ]; then 
-	ui_print "- There are no cpio file to select"
-        ui_print "- Skipping ramdisk patching"
-  fi
+if [ $RAMDISK_SELECTED -eq 0 ]; then 
+     ui_print "- There are no cpio file to select"
+     ui_print "- Skipping ramdisk patching"
+fi
 
 #checking if the selected ramdisks contains an init binary
 #"./magiskboot cpio <filename.cpio> exists" doesn't work so we need to extract all files of the cpio to check
@@ -192,7 +192,7 @@ ui_print "- Checking if an init binary exists in the selected ramdisk"
 if [ $RAMDISK_EXISTS -eq 1 ]; then
      mkdir ./test
      cp $RAMDISK_FILE ./test
-     cp ./magiskboot ./test
+     cp -P ./magiskboot ./test # ./magiskboot is a symlink 
      cd ./test
      ./magiskboot cpio $RAMDISK_FILE extract
      if [ -e init ]; then
@@ -209,6 +209,7 @@ if [ $RAMDISK_EXISTS -eq 1 ]; then
       cd ..
       rm -R ./test
   fi
+
 
 ###################
 # Ramdisk Restores
@@ -363,8 +364,6 @@ $CHROMEOS && sign_chromeos
 [ -e "$BOOTNAND" ] && BOOTIMAGE="$BOOTNAND"
 
 ui_print "- THIS MAGISK RELEASE IS UNOFFICIAL"
-ui_print "- THIS MAGISK RELEASE IS UNSUPPORTED"
-ui_print "- USE AT YOUR OWN RISK"
 ui_print "- DO NOT ASK ABOUT IT"
 ui_print "- IN THE OFFICIAL MAGISK GITHUB"
 
