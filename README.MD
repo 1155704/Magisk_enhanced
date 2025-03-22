@@ -40,7 +40,7 @@ If you want to modify the boot_patch.sh script used for this app and generate yo
 
 This could be useful if the images contain ramdisks with unconventional names for example. In that case you could modify the script to include these names to the names of ramdisks the app already tries to patch.
 
-## More info on how rooting works
+## More information on how rooting works
 
 https://www.youtube.com/watch?v=p42nJmdtiSg
 
