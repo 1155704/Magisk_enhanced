@@ -6,7 +6,7 @@ This custom version does, and also contains multiple enhancements compared to th
 
 ## Disclaimer
 
-This custom version is unofficial so if you have issues with it ask here : https://github.com/NeutroGe/Magisk_for_unsupported_devices/issues but not on the official Magisk github.
+This custom version is unofficial so if you have issues with it ask here : https://github.com/NeutroGe/Magisk_enhanced/issues but not on the official Magisk github.
 
 I tested it on my own device and on boot images of other devices and it worked well. However you are using it at your own risks, which shouldn't be too great if you know what you are doing, at worst reflash the original boot image and that's it.
 
