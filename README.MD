@@ -1,6 +1,6 @@
 ## Custom enhanced version of magisk allowing to patch unsupported devices
 
-Some android devices have boot structures that dont comply the android standards designed by Google and the official version of magisk doesn't support them. This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and more.
+Some android devices have boot structures that dont comply with the android standards designed by Google and the official version of magisk doesn't support them. This is the case of the Xiaomi Redmi Pad SE 8.7 (codenames "flare" and "spark") and more.
 
 This custom version does, and also contains multiple enhancements compared to the original version: lists all ramdisk in the selected file, checks that it contains at least one, checks if there is at least one init binary to patch inside one of the ramdisks, auto-selection of the ramdisk to patch if multiple are present, more verbose logs, ...
 
