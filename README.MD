@@ -20,7 +20,9 @@ Download the apk file from the "releases" section on the right of this page
 
 Usage is the same as described on the official magisk website: https://topjohnwu.github.io/Magisk/install.html
 
-## How to know if your device might be unsupported by the official version of magisk:
+## Usage for devices unsupported by the official version of magisk
+
+How to know if your device might be not be supported by the official version of magisk:
 
  - Your device fastboot firmware does not contain an init_boot.img image,
 
