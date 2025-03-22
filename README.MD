@@ -24,8 +24,6 @@ Usage is the same as described on the official magisk website: https://topjohnwu
 
  - Your device fastboot firmware does not contain an init_boot.img image,
 
- - Your device fastboot firmware does not contain a recovery.img image,
-
  - your device fastboot firmware has a boot.img image, but patching it with the official magisk app doesn't root your device. There are no errors in the patching process, but the system is still not rooted after flahsing the patched boot.img image.
 
 If the conditions are met, it means your device could be non compliant to android standards and the boot ramdisk could be located on another image than boot.img, init_boot.img or recovery.img.
