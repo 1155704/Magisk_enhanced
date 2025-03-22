@@ -14,7 +14,7 @@ I tested it on my own device and on boot images of other devices and it worked w
 
 But if you do something wrong by mistake and you brick your device using it, it's on you (same as with the original version of magisk).
 
-## Usage for regular devices (on which the regular version of magisk already work)
+## Usage for regular devices
 
 Download the apk file from the "releases" section on the right of this page
 
