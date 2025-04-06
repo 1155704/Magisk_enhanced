@@ -133,6 +133,7 @@ ui_print "- Searching for a cpio to select"
  while read p; do
        if [[ $p == "./ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
+	       RAMDISK_FILENAME="ramdisk.cpio"
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
 	       ui_print "- Selected cpio file is $RAMDISK_FILE"
@@ -145,6 +146,7 @@ ui_print "- Searching for a cpio to select"
       while read p; do
       	 if [[ $p == "*init_boot.cpio" ]]; then
                RAMDISK_FILE=$p
+	       RAMDISK_FILENAME="init_boot.cpio"
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
 	       ui_print "- Selected cpio file is $RAMDISK_FILE"
@@ -158,6 +160,7 @@ ui_print "- Searching for a cpio to select"
       while read p; do
       	 if [[ $p == "*ramdisk.cpio" ]]; then
                RAMDISK_FILE=$p
+	       RAMDISK_FILENAME="ramdisk.cpio"
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
 	       ui_print "- Selected cpio file is $RAMDISK_FILE"
@@ -171,6 +174,7 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       while read p; do
       	 if [[ $p == "*recovery.cpio" ]]; then
                RAMDISK_FILE=$p
+               RAMDISK_FILENAME="recovery.cpio"
                RAMDISK_EXISTS=1
 	       RAMDISK_SELECTED=1
 	       ui_print "- Selected cpio file is $RAMDISK_FILE"
@@ -179,9 +183,11 @@ if [ $RAMDISK_SELECTED -eq 0 ]; then
       rm tmp.log
 fi
 
+
 if [ $RAMDISK_SELECTED -eq 0 ]; then 
      ui_print "- There are no cpio file to select"
      ui_print "- Skipping ramdisk patching"
+
 fi
 
 #checking if the selected ramdisks contains an init binary
@@ -194,7 +200,7 @@ if [ $RAMDISK_EXISTS -eq 1 ]; then
      cp $RAMDISK_FILE ./test
      cp -P ./magiskboot ./test # ./magiskboot is a symlink 
      cd ./test
-     ./magiskboot cpio $RAMDISK_FILE extract
+     ./magiskboot cpio ./$RAMDISK_FILENAME extract
      if [ -e init ]; then
           INIT_BINARY_EXISTS=1
 	  ui_print "- Init binary found in the selected ramdisk file"
@@ -209,7 +215,6 @@ if [ $RAMDISK_EXISTS -eq 1 ]; then
       cd ..
       rm -R ./test
   fi
-
 
 ###################
 # Ramdisk Restores
