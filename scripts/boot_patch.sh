@@ -193,7 +193,7 @@ fi
 #checking if the selected ramdisks contains an init binary
 #"./magiskboot cpio <filename.cpio> exists" doesn't work so we need to extract all files of the cpio to check
 
-ui_print "- Checking if an init binary exists in the selected ramdisk"
+ui_print "- Checking if an init binary exists in the selected cpio"
 
 if [ $RAMDISK_EXISTS -eq 1 ]; then
      mkdir ./test
@@ -203,9 +203,9 @@ if [ $RAMDISK_EXISTS -eq 1 ]; then
      ./magiskboot cpio ./$RAMDISK_FILENAME extract
      if [ -e init ]; then
           INIT_BINARY_EXISTS=1
-	  ui_print "- Init binary found in the selected ramdisk file"
+	  ui_print "- Init binary found in the selected cpio file"
      else
-          ui_print "- There are no init binary in the selected ramdisk file"
+          ui_print "- There are no init binary in the selected cpio file"
           ui_print "- Skipping ramdisk patching"
 	  RAMDISK_EXISTS=0
           RAMDISK_SELECTED=0
